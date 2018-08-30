@@ -10,31 +10,32 @@ var {mongoose} = require('./../db/mongoose');
 
 var User = mongoose.model('User',userSchema);
 var Account = mongoose.model('Account',accountSchema);
+//user registation end point
 router.post('/',(req,res,next)=>{
     User.findOne({email:req.body.email}, (error, data)=>{
         if(error){
             return res.status(500).json({
-                status: 'error',
+                status: false,
                 message: error
             })
         }else{
         if(data != null){
             return res.status(409).json({
-                status:'error',
+                status:false,
                 message: 'Email already  exists',                     
             })
         }else{
             User.findOne({mobile:req.body.mobile}, (error, data)=>{
                 if(data !=null){
                     return res.status(409).json({
-                        status:'error',
+                        status:false,
                         message:'Mobile Number already Exists'
                     })
                 }else{
                     bcrypt.hash(req.body.password,10,(error, hash)=>{
                         if(error){
                             return res.status(500).json({
-                                status:'error',
+                                status:false,
                                 message:error
                             })
                         }else{
@@ -54,7 +55,7 @@ router.post('/',(req,res,next)=>{
                                 });
                                 account.save()
                                 res.status(200).json({
-                                    status:'success',
+                                    status:true,
                                     message:"Registered successfully",
                                     data: doc,            
                         
@@ -89,13 +90,13 @@ router.post('/login',(req,res,next)=>{
     User.find({email:email},(err, data) =>{
         if(err){
             return res.status(401).json({
-                status: 'error',
+                status: false,
                 message: err
             })
         }
         if(data.length < 1){
             return res.status(401).json({
-                status:'error',
+                status:false,
                 message: 'Authentication Failed',
                              
             })
@@ -103,7 +104,7 @@ router.post('/login',(req,res,next)=>{
             bcrypt.compare(password,data[0].password, (error, result)=>{
                 if(error){
                     return res.status(401).json({
-                        status:'error',
+                        status:false,
                         message: error
                     })
                 }else{
@@ -117,7 +118,7 @@ router.post('/login',(req,res,next)=>{
                             expiresIn:"1h"
                         });
                         return res.status(200).json({
-                            status: 'success',
+                            status: true,
                             message: 'Authentication successful',
                             token: token
                         })
@@ -135,18 +136,19 @@ router.get('/',(req,res,next)=>{
     User.find((error,data) =>{
         if(error){
            return res.status(400).json({
-                status: 'error',
+                status: false,
                 message: error
             })
         }
         if(data.length ==0){
            return res.status(200).json({
-                status: 'error',
+                status: false,
                 message: 'No users found'
             })
         }
         res.status(200).json({
-            status: 'success',
+            status: true,
+            message:'Users found',
             users: data
         })
     })
@@ -157,18 +159,18 @@ router.get('/:email',(req,res,next)=>{
     User.findOne({ email:searchEmail},(error, data)=>{
         if(error){
             res.status(400).json({
-                status : 'error',
+                status : fail,
                 message : error
             })
         }else {
             if(data == null){
                 return res.status(200).json({
-                    status : 'success',
+                    status : true,
                     message : 'User Not found'
                 })
             }
             res.status(200).json({
-                status:'success',
+                status:true,
                 user: data
             })            
         }

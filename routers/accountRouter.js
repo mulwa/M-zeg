@@ -71,12 +71,13 @@ router.get('/balance',isAuthenticated,(req,res, next) =>{
     Account.find({email:req.userData.email},(error, account)=>{
         if(error){
             res.status(403).json({
-                status: 'failed',
+                status: false,
                 message: error
             })
         }else{
            return res.status(200).json({
-                status: 'success',
+                status: true,
+                message: 'successful',
                 account: account
             })
             
@@ -93,13 +94,13 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
     User.findOne({email:receiverEmail},(error, receiverData)=>{
         if(error){
             return res.status(500).json({
-                status: 'error',
+                status: false,
                 message: error
             })            
         }
         if(receiverData == null){
             return res.status(403).json({
-                status: 'error',
+                status: false,
                 message: 'Receiver  with that Email does not exist'
             }) 
         }
@@ -107,7 +108,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
             Account.findOne({email:userdata.email},(error,senderAccount) =>{                
                 if(parseInt(senderAccount.amount) < parseInt(req.body.amount)){
                     return res.status(403).json({
-                        status: 'error',
+                        status: false,
                         message: 'You dont have sufficient funds in your account'
                     }) 
                 }
@@ -145,7 +146,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
                                         date: new Date()
                                     }).save();                       
                                     return res.status(200).json({
-                                        status: 'success',
+                                        status: true,
                                         message: 'Transactions completed successful',
                                         account: data,
                                                                          
@@ -153,7 +154,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
                                 })
                                }else{
                                 return res.status(403).json({
-                                    status: 'error',
+                                    status: false,
                                     message: 'Cannot complete Transaction please try again later',
                                                                   
                                 })
@@ -162,7 +163,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
                            })
                     }else{
                         return res.status(403).json({
-                            status: 'error',
+                            status: false,
                             message: 'Cannot complete Transaction please try again later',
                            
                         })

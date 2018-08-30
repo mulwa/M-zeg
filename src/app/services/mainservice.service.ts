@@ -12,8 +12,14 @@ export class MainserviceService {
    }
    
 
-  getUsers(){
-    this.http.get("http://localhost:9090/http://localhost:3000/user",{headers:this.httpHeaders});
+  setSession(token:string){
+    localStorage.setItem("token",token);
+  }
+  getToken(){
+    return localStorage.getItem("token");
+  }
+  logOut(){
+    localStorage.removeItem("token");
   }
 
 }

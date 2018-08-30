@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   url ="http://localhost:9090/http://localhost:3000/user";
   httpHeaders:HttpHeaders;
 
-  constructor( private fb: FormBuilder,private http: HttpClient) { 
+  constructor( private fb: FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService) { 
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',      
     });
@@ -31,9 +32,8 @@ export class RegisterComponent implements OnInit {
     })
   }
   onRegister(){
-    console.log('registering')
-    let user = this.signupForm.value
-    console.log(user)
+    this._flashMessagesService.show('Registering', { cssClass: 'alert-success',timeout:5000 } );
+    let user = this.signupForm.value    
     this.http.post(this.url,user,{headers:this.httpHeaders}).subscribe((res) =>{
       console.log(res);
     },error =>{

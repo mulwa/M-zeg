@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule }    from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {ReactiveFormsModule}  from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 
@@ -19,6 +20,7 @@ import { SendComponent } from './components/send/send.component';
 import { SendMoneyComponent } from './components/send-money/send-money.component';
 import { TopAccoountComponent } from './components/top-accoount/top-accoount.component';
 import { MainserviceService } from './services/mainservice.service';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -32,12 +34,14 @@ import { MainserviceService } from './services/mainservice.service';
     ReceivedComponent,
     SendComponent,
     SendMoneyComponent,
-    TopAccoountComponent
+    TopAccoountComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,  
+    ReactiveFormsModule,
+    FlashMessagesModule.forRoot(),  
     AppRoutingModule
   ],
   providers: [MainserviceService],
