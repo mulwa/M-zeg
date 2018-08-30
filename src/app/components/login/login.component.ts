@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       this.http.post<loginResponse>(this.url,user,{headers:this.httpHeaders}).subscribe((data)=>{
         console.log(status);
         if(data.status){
+          this.loginForm.reset();
           this.service.setSession(data.token);
           this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout:4000 } );
         }else{
