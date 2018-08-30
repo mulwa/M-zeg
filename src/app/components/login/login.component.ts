@@ -1,5 +1,7 @@
+import { MainserviceService } from './../../services/mainservice.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  httpHeaders:HttpHeaders;
+  url ="http://localhost:9090/http://localhost:3000/user/login"; 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient ) {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type' : 'application/json',      
+    });
+    
+   }
 
   ngOnInit() {
     this.loginForm =  this.fb.group({
@@ -21,10 +30,16 @@ export class LoginComponent implements OnInit {
   onlogin(){
     console.log('on  login clicck');
     if(this.loginForm.valid) {
-      let user = this.loginForm.value;
-      console.log(user);
-      
-      /* Any API call logic via services goes here */
+      let user = this.loginForm.value;        
+      this.http.post(this.url,user,{headers:this.httpHeaders}).subscribe((data)=>{
+        console.log(data.status);
+        if(data.status =='success'){
+          console.log('succeeded');
+        }
+      },error =>{
+        console.log(error);
+      })
+     
   }
   }
 

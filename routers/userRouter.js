@@ -93,10 +93,11 @@ router.post('/login',(req,res,next)=>{
                 message: err
             })
         }
-        if(data.length  < 1){
+        if(data.length < 1){
             return res.status(401).json({
                 status:'error',
-                message: 'Authentication Failed',                
+                message: 'Authentication Failed',
+                             
             })
         }else{
             bcrypt.compare(password,data[0].password, (error, result)=>{
@@ -130,7 +131,7 @@ router.post('/login',(req,res,next)=>{
 })
 
 //get all users
-router.get('/',isAuthenticated,(req,res,next)=>{
+router.get('/',(req,res,next)=>{
     User.find((error,data) =>{
         if(error){
            return res.status(400).json({
