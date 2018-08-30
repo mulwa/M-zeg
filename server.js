@@ -1,6 +1,6 @@
 
 const http = require('http');
-// const app = require('./app');
+const app = require('./app');
 
 const express = require('express');
 const app = express();
@@ -10,6 +10,6 @@ app.use(express.static(__dirname + '/dist'));
 
 const port = process.env.PORT || 8080;
 
-// const server = http.createServer(app);
+const server = http.createServer(app);
 
 server.listen(port);
