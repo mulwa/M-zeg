@@ -14,15 +14,14 @@ var CashOut = mongoose.model('CashOut',cashOutSchema);
 var isAuthenticated  = require('./../middleware/checkAuth');
 
 // top up account
-router.post('/top',isAuthenticated,(req,res,next)=>{
-    
+router.post('/top',isAuthenticated,(req,res,next)=>{    
     amount = req.body.amount;
     userData = req.userData;
 
     Account.findOne({email:userData.email},(error, user)=>{
         if(error){
             return res.status(500).json({
-                status:'error',
+                status:false,
                 message:error
             })
         }else{
@@ -35,25 +34,26 @@ router.post('/top',isAuthenticated,(req,res,next)=>{
                 });
                 account.save().then((doc) =>{
                     res.status(200).json({
-                        message:'sucess',
-                        account:doc,
-                        userData:userData
+                        status: true,
+                        message:'Successfully Updated Your Account Balance ',
+                        account:doc,                        
                     })
                 })
 
             }else{               
                 var updatedAmount = parseInt(amount) + parseInt(user.amount);
                 Account.findOneAndUpdate({email:userData.email},{amount:updatedAmount},{new: true},(error, updatedAccount)=>{
-
                     if(error){
                         return res.status(500).json({
-                            status:'error',
-                            message:error
+                            status:false,
+                            message:error,
+                            message:'Successfully Updated Your Account Balance',
                         })
                     }else{
                         return res.status(200).json({
-                            status:'success',
-                            message:updatedAccount
+                            status:true,
+                            message:'Successfully Updated Your Account Balance',                 
+                            
                         })
                     }
 
@@ -61,31 +61,29 @@ router.post('/top',isAuthenticated,(req,res,next)=>{
             }
         }
     })
-
-    
-
         
 })
 //check balance 
 router.get('/balance',isAuthenticated,(req,res, next) =>{
     Account.find({email:req.userData.email},(error, account)=>{
         if(error){
-            res.status(403).json({
+            res.status(200).json({
                 status: false,
                 message: error
             })
         }else{
            return res.status(200).json({
                 status: true,
-                message: 'successful',
-                account: account
+                message: 'Successfully Updated Your Account Balance',
+                account:  account
+                
             })
             
         }
     })
 })
 //send money
-router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
+router.post('/sendmoney',isAuthenticated,(req,res,next)=>{  
     var receiverEmail = req.body.receiverEmail;
     var amount = req.body.amount;
     var date = new Date();
@@ -93,13 +91,13 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
     //check if email exists
     User.findOne({email:receiverEmail},(error, receiverData)=>{
         if(error){
-            return res.status(500).json({
+            return res.status(200).json({
                 status: false,
                 message: error
             })            
         }
         if(receiverData == null){
-            return res.status(403).json({
+            return res.status(200).json({
                 status: false,
                 message: 'Receiver  with that Email does not exist'
             }) 
@@ -107,7 +105,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
             //check sender account has money
             Account.findOne({email:userdata.email},(error,senderAccount) =>{                
                 if(parseInt(senderAccount.amount) < parseInt(req.body.amount)){
-                    return res.status(403).json({
+                    return res.status(200).json({
                         status: false,
                         message: 'You dont have sufficient funds in your account'
                     }) 
@@ -153,7 +151,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
                                     })
                                 })
                                }else{
-                                return res.status(403).json({
+                                return res.status(200).json({
                                     status: false,
                                     message: 'Cannot complete Transaction please try again later',
                                                                   
@@ -162,7 +160,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
 
                            })
                     }else{
-                        return res.status(403).json({
+                        return res.status(400).json({
                             status: false,
                             message: 'Cannot complete Transaction please try again later',
                            

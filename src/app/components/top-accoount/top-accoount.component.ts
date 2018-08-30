@@ -12,7 +12,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class TopAccoountComponent implements OnInit {
   topupForm:FormGroup;
   httpHeaders:HttpHeaders;
-  url ="http://localhost:9090/http://localhost:3000/user/login"; 
+  url ="http://localhost:9090/http://localhost:3000/account/top"; 
 
   constructor(private fb:FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService,private service:MainserviceService) { }
 
@@ -29,6 +29,7 @@ export class TopAccoountComponent implements OnInit {
     if(this.topupForm.valid){
       let totopUp = this.topupForm.value;
       this.http.post<topUpResponse>(this.url,totopUp,{headers:this.httpHeaders}).subscribe(res=>{
+        console.log(res);
         if(res.status){
           this.topupForm.reset();
           this._flashMessagesService.show(res.message, { cssClass: 'alert-success', timeout:5000 } );

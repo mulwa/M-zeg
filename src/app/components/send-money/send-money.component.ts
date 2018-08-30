@@ -42,6 +42,7 @@ export class SendMoneyComponent implements OnInit {
       }
 
     },error =>{
+      console.log(error);
       this._flashMessagesService.show("Please check Your internet Conection", { cssClass: 'alert-danger', timeout:5000 } );
 
     })
