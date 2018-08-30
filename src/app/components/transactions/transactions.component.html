@@ -1,0 +1,25 @@
+<div class="row top-navigation">
+  <div class="col-md-3">
+      <a  class="nav" [routerLink]="['./topUp']">Top up</a>    
+  </div>
+  
+  <div class="col-md-3">    
+    <a  class="nav" [routerLink]="['./send']">Send Money</a> 
+  </div>
+  <div class="col-md-3">    
+      <a  class="" [routerLink]="['./received']">Received Cash</a> 
+  </div>
+  <div class="col-md-3">    
+      <a class="">Balance {{balance |currency}}</a>
+    </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+      <app-send></app-send>
+  </div>
+  <div class="col-md-6 col-lg-6">    
+    <router-outlet></router-outlet>
+    
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="card"> 
+      <div class="card-header">
+       <h4 style="color:#fff"> Registration</h4>
+      </div>     
+      <div class="card-body">       
+        <form [formGroup]="signupForm"action="" class="form">
+          <div class="form-group">
+            <input formControlName="email" type="text" class="form-control" placeholder="Email address">
+          </div>
+          <div class="form-group">
+            <input formControlName="firstname" type="text"  class="form-control" placeholder="Firstname">
+          </div>
+          <div class="form-group">
+              <input formControlName="surname" type="text"  class="form-control" placeholder="Surname">
+          </div>
+          <div class="form-group">
+            <input formControlName="mobile" type="number" class="form-control" placeholder="Mobile Number">
+          </div>
+          <div class="form-group">
+            <input formControlName="password" type="password" name="" id="" class="form-control" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input formControlName="confirmPasssword" type="password" name="" id="" class="form-control" placeholder="Confirm Password">
+          </div>
+          <div class="form-group">
+             <button [disabled]="!signupForm.valid" (click)="onRegister()" class="card-link btn btn-primary">Register</button>
+          </div>
+          <div class="form-group">
+              <a [routerLink]="['/login']" class="card-link btn btn-infor">Already Have an Account</a>
+          </div>
+        </form>
+      </div> <!--end card-body-->     
+    </div> <!--end card-->
+  </div>
+</div>

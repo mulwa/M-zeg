@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <h4 style="color:#fff">Received Money</h4>
+  </div>
+  <div class="card-body">
+      <table class="table table-bordered table-stripped">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Sender Name</th>
+              <th>Sender Mobile</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tran of receive">
+              <th>1</th>
+              <td>{{tran.name}}</td>
+              <td>{{tran.mobile}}</td>
+              <td>{{tran.amount |currency}}</td>
+              <td>{{tran.date |date}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>
