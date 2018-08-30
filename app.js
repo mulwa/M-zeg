@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 var userRouter = require('./routers/userRouter');
 var accountRouter = require('./routers/accountRouter');
 
+app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.urlencoded({ extended:false}));
 app.use(bodyParser.json());
 
