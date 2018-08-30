@@ -11,7 +11,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class RegisterComponent implements OnInit {
   signupForm:FormGroup;
-  url ="http://localhost:9090/http://localhost:3000/user";
+  url ="https://m-zeg.herokuapp.com/user";
   httpHeaders:HttpHeaders;
 
   constructor( private fb: FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService) { 

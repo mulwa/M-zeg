@@ -12,7 +12,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   httpHeaders:HttpHeaders;
-  url ="http://localhost:9090/http://localhost:3000/user/login"; 
+  url ="https://m-zeg.herokuapp.com/user/login"; 
   
 
   constructor(private fb: FormBuilder, private http: HttpClient,private _flashMessagesService: FlashMessagesService,private service:MainserviceService ) {
