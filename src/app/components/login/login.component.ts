@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   
 
   constructor(private fb: FormBuilder, private http: HttpClient,private _flashMessagesService: FlashMessagesService,private service:MainserviceService,
-    private spinnerService: Ng4LoadingSpinnerService ) {
+    private spinnerService: Ng4LoadingSpinnerService, private router:Router ) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',      
     });
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
         if(data.status){
           this.loginForm.reset();
           this.service.setSession(data.token);
-          this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout:4000 } );
+          this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout:4000 } );          
         }else{
           this._flashMessagesService.show(data.message, { cssClass: 'alert-danger', timeout:4000 } );
         }
