@@ -74,8 +74,8 @@ router.get('/balance',isAuthenticated,(req,res, next) =>{
         }else{
            return res.status(200).json({
                 status: true,
-                message: 'Successfully Updated Your Account Balance',
-                account:  account
+                message: 'Successful',
+                balance:  account.amount
                 
             })
             
@@ -173,4 +173,44 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
         
     })
 })
+// money   send to other users
+router.get('/moneysend',isAuthenticated,(req,res,next)=>{
+    var userdata = req.userData;
+    CashOut.find({email:userdata.email}, (error, account)=>{
+        if(error){
+            return res.status(200).json({
+                status:false,
+                message:error
+            })
+        }else{
+            return res.status(200).json({
+                status:true,
+                message:'successful',
+                cachout:account
+            })
+        }
+
+    })
+});
+
+// money  received from other users
+router.get('/moneysend',isAuthenticated,(req,res,next)=>{
+    var userdata = req.userData;
+    CashIn.find({email:userdata.email}, (error, account)=>{
+        if(error){
+            return res.status(200).json({
+                status:false,
+                message:error
+            })
+        }else{
+            return res.status(200).json({
+                status:true,
+                message:'successful',
+                cachIn:account
+            })
+        }
+
+    })
+})
+
 module.exports = router;

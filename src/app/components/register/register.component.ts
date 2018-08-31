@@ -41,8 +41,11 @@ export class RegisterComponent implements OnInit {
       this.spinnerService.hide();
       if(res.status){
         this.signupForm.reset();
-        this._flashMessagesService.show(res.message, { cssClass: 'alert-success',timeout:5000 } );
-        this.router.navigate(['login']);
+        this._flashMessagesService.show(res.message, { cssClass: 'alert-success',timeout:4000 } );
+        // redirect after message
+        setTimeout(()=>{
+          this.router.navigate(['login']);
+        },5000)
       }else{
         this._flashMessagesService.show(res.message, { cssClass: 'alert-danger',timeout:5000 } );
 
