@@ -13,7 +13,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class TopAccoountComponent implements OnInit {
   topupForm:FormGroup;
   httpHeaders:HttpHeaders;
-  url ="http://localhost:9090/http://localhost:3000/account/top"; 
+  url ="https://m-zeg.herokuapp.com/account/top"; 
 
   constructor(private fb:FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService,private service:MainserviceService,private spinnerService: Ng4LoadingSpinnerService) { }
 

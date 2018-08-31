@@ -13,7 +13,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class SendMoneyComponent implements OnInit {
   sendForm:FormGroup;
   httpHeaders:HttpHeaders;
-  url ="http://localhost:9090/http://localhost:3000/account/sendmoney";
+  url ="https://m-zeg.herokuapp.com/account/sendmoney";
 
   constructor(private fb:FormBuilder,private service: MainserviceService,private http: HttpClient,private _flashMessagesService: FlashMessagesService,private spinnerService: Ng4LoadingSpinnerService) {
 
