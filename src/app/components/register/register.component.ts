@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   url ="https://m-zeg.herokuapp.com/user";
   httpHeaders:HttpHeaders;
 
-  constructor( private fb: FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService) { 
+  constructor( private fb: FormBuilder,private http: HttpClient,private _flashMessagesService: FlashMessagesService,private spinnerService: Ng4LoadingSpinnerService) { 
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',      
     });
@@ -31,15 +32,30 @@ export class RegisterComponent implements OnInit {
 
     })
   }
-  onRegister(){
-    this._flashMessagesService.show('Registering', { cssClass: 'alert-success',timeout:5000 } );
+  onRegister(){ 
+    this.spinnerService.show();   
     let user = this.signupForm.value    
-    this.http.post(this.url,user,{headers:this.httpHeaders}).subscribe((res) =>{
+    this.http.post<registrationResponse>(this.url,user,{headers:this.httpHeaders}).subscribe((res) =>{
       console.log(res);
+      this.spinnerService.hide();
+      if(res.status){
+        this.signupForm.reset();
+        this._flashMessagesService.show(res.message, { cssClass: 'alert-success',timeout:5000 } );
+      }else{
+        this._flashMessagesService.show(res.message, { cssClass: 'alert-danger',timeout:5000 } );
+
+      }
     },error =>{
+      this.spinnerService.hide();
       console.log(error)
+      this._flashMessagesService.show('Please Check your Connection', { cssClass: 'alert-danger',timeout:5000 } );
     })
 
   }
 
+}
+interface registrationResponse {
+  status: boolean;
+  message: string;
+ 
 }
