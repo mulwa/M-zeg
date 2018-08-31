@@ -27,6 +27,7 @@ export class ReceivedComponent implements OnInit {
     });
 
     this.http.get<cashinResponse>(this.url,{headers:this.httpHeaders}).subscribe(res =>{
+      console.log(res);
       this.showLoading = false;
       if(res){
         this.receive = res.cashIn;
