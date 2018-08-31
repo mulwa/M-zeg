@@ -25,7 +25,8 @@ export class MainserviceService {
     
   }
   isAuthenticated():boolean{
-    let token = this.getToken();  
+    let token = this.getToken();
+    console.log(token);  
     if(token == null){
       return false;
     }

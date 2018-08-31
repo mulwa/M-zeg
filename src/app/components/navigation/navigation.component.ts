@@ -1,4 +1,6 @@
+import { MainserviceService } from './../../services/mainservice.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:MainserviceService, private router:Router) { }
 
   ngOnInit() {
+  }
+  onLogout(){
+    this.service.logOut();
+    this.router.navigate(['login']);
+
+
   }
 
 }
