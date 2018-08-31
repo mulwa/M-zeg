@@ -1,4 +1,4 @@
-<app-loading-spinner></app-loading-spinner>
+<app-loading-spinner *ngIf="showLoading"></app-loading-spinner>
 <div class="card">
   <div class="card-header">
     <h4 style="color: #fff">Send Money</h4>
@@ -17,8 +17,8 @@
           <tbody>
             <tr *ngFor="let tran of send">
               <th>1</th>
-              <td>{{tran.name}}</td>
-              <td>{{tran.mobile}}</td>
+              <td>{{tran.receiverName}}</td>
+              <td>{{tran.receiverEmail}}</td>
               <td>{{tran.amount | currency}}</td>
               <td>{{tran.date | date}}</td>
             </tr>
