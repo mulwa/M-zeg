@@ -41,7 +41,10 @@ export class LoginComponent implements OnInit {
         if(data.status){
           this.loginForm.reset();
           this.service.setSession(data.token);
-          this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout:4000 } );          
+          this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout:4000 } );
+          setTimeout(()=>{
+            this.router.navigate(['transactions']);
+          },500)          
         }else{
           this._flashMessagesService.show(data.message, { cssClass: 'alert-danger', timeout:4000 } );
         }
