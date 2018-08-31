@@ -52,7 +52,8 @@ router.post('/top',isAuthenticated,(req,res,next)=>{
                     }else{
                         return res.status(200).json({
                             status:true,
-                            message:'Updated Balance',                 
+                            message:'Updated Balance',
+                            account: updatedAccount                 
                             
                         })
                     }
