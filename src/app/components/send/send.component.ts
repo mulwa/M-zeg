@@ -28,10 +28,11 @@ export class SendComponent implements OnInit {
     });
 
     this.http.get<cashoutResponse>(this.url,{headers:this.httpHeaders}).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.showLoading=false;
       if(res){
         this.send = res.cashOut;
+        console.log(res.cashOut);
       }else{
         console.log(res);
       }
