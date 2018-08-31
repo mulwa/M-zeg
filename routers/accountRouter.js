@@ -86,8 +86,7 @@ router.get('/balance',isAuthenticated,(req,res, next) =>{
 //send money
 router.post('/sendmoney',isAuthenticated,(req,res,next)=>{  
     var receiverEmail = req.body.receiverEmail;
-    var amount = req.body.amount;
-    var date = new Date();
+    var amount = req.body.amount;   
     var userdata = req.userData;
     //check if email exists
     User.findOne({email:receiverEmail},(error, receiverData)=>{
