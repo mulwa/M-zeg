@@ -21,6 +21,7 @@ import { SendMoneyComponent } from './components/send-money/send-money.component
 import { TopAccoountComponent } from './components/top-accoount/top-accoount.component';
 import { MainserviceService } from './services/mainservice.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FlashMessagesModule.forRoot(),  
+    FlashMessagesModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot(),  
     AppRoutingModule
   ],
   providers: [MainserviceService],
