@@ -7,9 +7,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './services/authGuard';
 
 const routes: Routes = [
   { path: 'transactions', component:TransactionsComponent,
+  canActivate:[AuthGuard],
   children : [
     {path: '', redirectTo: 'received',  pathMatch: 'full'},    
     { path: 'send',component:SendMoneyComponent},

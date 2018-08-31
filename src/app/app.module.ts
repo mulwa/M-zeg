@@ -22,6 +22,7 @@ import { TopAccoountComponent } from './components/top-accoount/top-accoount.com
 import { MainserviceService } from './services/mainservice.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AuthGuard } from './services/authGuard';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     Ng4LoadingSpinnerModule.forRoot(),  
     AppRoutingModule
   ],
-  providers: [MainserviceService],
+  providers: [MainserviceService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
