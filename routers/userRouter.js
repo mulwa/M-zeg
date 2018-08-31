@@ -115,7 +115,7 @@ router.post('/login',(req,res,next)=>{
                             _id:data[0]._id
                         },
                         "mulwatech",{
-                            expiresIn:"1h"
+                            expiresIn:"7d"
                         });
                         return res.status(200).json({
                             status: true,
