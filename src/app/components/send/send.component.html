@@ -6,17 +6,15 @@
   <div class="card-body">
       <table class="table table-bordered table-striped">
           <thead class="thead-light">
-            <tr>
-              <th>#</th>
-              <th>Receiver Name</th>
-              <th>Receiver Mobile</th>
+            <tr>              
+              <th>Name</th>
+              <th>Mobile</th>
               <th>Amount Send</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tran of send">
-              <th>#</th>
+            <tr *ngFor="let tran of send">              
               <td>{{tran.receiverName}}</td>
               <td>{{tran.receiverEmail}}</td>
               <td>{{tran.amount | currency}}</td>

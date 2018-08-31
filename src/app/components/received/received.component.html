@@ -7,16 +7,14 @@
       <table class="table table-bordered table-stripped">
           <thead class="thead-dark">
             <tr>
-              <th>#</th>
-              <th>Sender Name</th>
-              <th>Sender Mobile</th>
-              <th>Amount Received</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Amount received</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tran of receive">
-              <th>#</th>
               <td>{{tran.senderName}}</td>
               <td>{{tran.senderMobile}}</td>
               <td>{{tran.amount |currency}}</td>
