@@ -75,7 +75,7 @@ router.get('/balance',isAuthenticated,(req,res, next) =>{
            return res.status(200).json({
                 status: true,
                 message: 'Successful',
-                balance:  account.amount
+                balance:  parseInt(account.amount)
                 
             })
             
@@ -194,7 +194,7 @@ router.get('/moneysend',isAuthenticated,(req,res,next)=>{
 });
 
 // money  received from other users
-router.get('/moneysend',isAuthenticated,(req,res,next)=>{
+router.get('/moneyreceived',isAuthenticated,(req,res,next)=>{
     var userdata = req.userData;
     CashIn.find({email:userdata.email}, (error, account)=>{
         if(error){
