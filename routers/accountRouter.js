@@ -76,7 +76,7 @@ router.get('/balance',isAuthenticated,(req,res, next) =>{
            return res.status(200).json({
                 status: true,
                 message: 'Successful',
-                balance:  parseInt(account.amount)
+                balance:  account.amount
                 
             })
             
