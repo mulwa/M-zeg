@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable()
 export class MainserviceService { 
   httpHeaders:HttpHeaders; 
 
-  constructor(private http: HttpClient,public jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',      
     });  
@@ -24,9 +24,12 @@ export class MainserviceService {
     
   }
   isAuthenticated():boolean{
-    let token = this.getToken();
-    return !this.jwtHelper.isTokenExpired(token);
-    
+    let token = this.getToken();  
+    if(token == null){
+      return false;
+    }
+    return true;
+       
   }
 
 }
