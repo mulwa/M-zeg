@@ -98,7 +98,7 @@ router.post('/sendmoney',isAuthenticated,(req,res,next)=>{
         }
         if(receiverData == null){
             return res.status(200).json({
-                status: false,
+                status: true,
                 message: 'Receiver  with that Email does not exist'
             }) 
         }
