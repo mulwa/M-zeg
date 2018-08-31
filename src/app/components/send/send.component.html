@@ -1,22 +1,22 @@
 <app-loading-spinner *ngIf="showLoading"></app-loading-spinner>
 <div class="card" *ngIf="send?.length > 0">
   <div class="card-header">
-    <h4 style="color: #fff">Send Money</h4>
+    <h4 style="color: #fff">Send Money To</h4>
   </div>
   <div class="card-body">
       <table class="table table-bordered table-striped">
           <thead class="thead-light">
             <tr>
               <th>#</th>
-              <th>Sender Name</th>
-              <th>Sender Mobile</th>
-              <th>Amount</th>
+              <th>Receiver Name</th>
+              <th>Receiver Mobile</th>
+              <th>Amount Send</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tran of send">
-              <th>1</th>
+              <th>#</th>
               <td>{{tran.receiverName}}</td>
               <td>{{tran.receiverEmail}}</td>
               <td>{{tran.amount | currency}}</td>
@@ -26,11 +26,6 @@
         </table>
   </div>
 </div>
-<div class="alert alert-info" *ngIf="send?.length == 0">
+<div class="alert alert-dark" *ngIf="send?.length == 0">
   You have not  send money to  any one
-</div>
-<div class="card">
-  <div class="card-body">
-    here {{send | json}}
-  </div>
 </div>

@@ -1,7 +1,7 @@
 <app-loading-spinner *ngIf="showLoading"></app-loading-spinner>
 <div class="card" *ngIf="receive?.length > 0">
   <div class="card-header">
-    <h4 style="color:#fff">Received Money</h4>
+    <h4 style="color:#fff">Received Money From</h4>
   </div>
   <div class="card-body">
       <table class="table table-bordered table-stripped">
@@ -10,13 +10,13 @@
               <th>#</th>
               <th>Sender Name</th>
               <th>Sender Mobile</th>
-              <th>Amount</th>
+              <th>Amount Received</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tran of receive">
-              <th>1</th>
+              <th>#</th>
               <td>{{tran.senderName}}</td>
               <td>{{tran.senderMobile}}</td>
               <td>{{tran.amount |currency}}</td>
@@ -26,6 +26,6 @@
         </table>
   </div>
 </div>
-<div class="alert alert-info" *ngIf="receive?.length == 0">
+<div class="alert alert-dark" *ngIf="receive?.length == 0">
   You have not received any Money
 </div>
