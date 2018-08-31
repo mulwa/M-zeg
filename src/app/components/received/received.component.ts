@@ -30,7 +30,7 @@ export class ReceivedComponent implements OnInit {
       console.log(res);
       this.showLoading = false;
       if(res){
-        this.receive = res.cashIn;
+        this.receive = res.cashin;
       }else{
         console.log(res)
       }
@@ -52,5 +52,5 @@ interface cashInInterface{
 interface cashinResponse {
   status: boolean;
   message: string;
-  cashIn:cashInInterface[];  
+  cashin:cashInInterface[];  
 }

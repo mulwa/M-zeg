@@ -186,7 +186,7 @@ router.get('/moneysend',isAuthenticated,(req,res,next)=>{
             return res.status(200).json({
                 status:true,
                 message:'successful',
-                cachout:account
+                cashout:account
             })
         }
 
@@ -206,7 +206,7 @@ router.get('/moneyreceived',isAuthenticated,(req,res,next)=>{
             return res.status(200).json({
                 status:true,
                 message:'successful',
-                cachIn:account
+                cashin:account
             })
         }
 

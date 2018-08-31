@@ -31,8 +31,8 @@ export class SendComponent implements OnInit {
       console.log(res);
       this.showLoading=false;
       if(res){
-        this.send = res.cashOut;
-        console.log(res.cashOut);
+        this.send = res.cashout;
+        console.log(res.cashout);
       }else{
         console.log(res);
       }
@@ -55,5 +55,5 @@ interface cashOutnInterface{
 interface cashoutResponse {
   status: boolean;
   message: string;
-  cashOut:cashOutnInterface[];  
+  cashout:cashOutnInterface[];  
 }
