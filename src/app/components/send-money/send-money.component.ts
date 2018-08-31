@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-send-money',
@@ -14,7 +15,7 @@ export class SendMoneyComponent implements OnInit {
   httpHeaders:HttpHeaders;
   url ="http://localhost:9090/http://localhost:3000/account/sendmoney";
 
-  constructor(private fb:FormBuilder,private service: MainserviceService,private http: HttpClient,private _flashMessagesService: FlashMessagesService) {
+  constructor(private fb:FormBuilder,private service: MainserviceService,private http: HttpClient,private _flashMessagesService: FlashMessagesService,private spinnerService: Ng4LoadingSpinnerService) {
 
    }
 
@@ -32,8 +33,10 @@ export class SendMoneyComponent implements OnInit {
     
     
     if(this.sendForm.valid){
+      this.spinnerService.show();
       let  sendInfor = this.sendForm.value;
     this.http.post<sendResponse>(this.url,sendInfor,{headers:this.httpHeaders}).subscribe(res =>{
+      this.spinnerService.hide();
       if(res.status){
         this.sendForm.reset();
         this._flashMessagesService.show(res.message, { cssClass: 'alert-success', timeout:5000 } );
@@ -42,6 +45,7 @@ export class SendMoneyComponent implements OnInit {
       }
 
     },error =>{
+      this.spinnerService.hide();
       console.log(error);
       this._flashMessagesService.show("Please check Your internet Conection", { cssClass: 'alert-danger', timeout:5000 } );
 
