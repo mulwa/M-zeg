@@ -29,3 +29,8 @@
 <div class="alert alert-info" *ngIf="send?.length == 0">
   You have not  send money to  any one
 </div>
+<div class="card">
+  <div class="card-body">
+    {{send | json}}
+  </div>
+</div>
