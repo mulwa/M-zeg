@@ -5,6 +5,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class MainserviceService { 
   httpHeaders:HttpHeaders; 
+  url ="https://m-zeg.herokuapp.com/user/login"; 
 
   constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
@@ -28,8 +29,8 @@ export class MainserviceService {
     if(token == null){
       return false;
     }
-    return true;
-       
+    return true;       
   }
-
+ 
 }
+

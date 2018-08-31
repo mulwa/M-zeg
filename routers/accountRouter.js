@@ -47,12 +47,12 @@ router.post('/top',isAuthenticated,(req,res,next)=>{
                         return res.status(500).json({
                             status:false,
                             message:error,
-                            message:'Successfully Updated Your Account Balance',
+                            message:'Balance update error',
                         })
                     }else{
                         return res.status(200).json({
                             status:true,
-                            message:'Successfully Updated Your Account Balance',                 
+                            message:'Updated Balance',                 
                             
                         })
                     }
