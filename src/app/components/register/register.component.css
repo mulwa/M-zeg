@@ -4,9 +4,12 @@
   .row{
     margin-top: 50px;
   }
-  fa-check-circle{
+  .fa-check-circle{
     color: green;
   }
-  fa-times-circle {
+  .fa-times-circle {
     color: red;
+  }
+  .errors {
+    margin-top: 10px;
   }
