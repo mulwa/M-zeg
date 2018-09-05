@@ -4,3 +4,9 @@
   .row{
     margin-top: 50px;
   }
+  fa-check-circle{
+    color: green;
+  }
+  fa-times-circle {
+    color: red;
+  }
