@@ -5,6 +5,7 @@ import { error } from 'util';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
+import { CustomValidators } from '../../CustomValidators';
 
 @Component({
   selector: 'app-register',
@@ -29,9 +30,12 @@ export class RegisterComponent implements OnInit {
       surname: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['',Validators.required],
-      confirmPasssword: ['',Validators.required]
-
+      confirmPasssword: ['',CustomValidators.matchPassword]
     })
+
+    this.signupForm.controls.password.valueChanges.subscribe( 
+      x=> this.signupForm.controls.confirmPasssword.updateValueAndValidity()
+    )
   }
   get email(){
     return this.signupForm.get('email') as FormControl;
