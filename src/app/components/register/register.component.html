@@ -9,21 +9,58 @@
         <form [formGroup]="signupForm"action="" class="form">
           <div class="form-group">
             <input formControlName="email" type="text" class="form-control" placeholder="Email address">
+            <div class="errors">
+              <span>
+                <i class="fa fa-check-circle" *ngIf="email.valid"></i>
+              </span>
+              <span> <i class="fa fa-times-circle" *ngIf="email.invalid  && email.touched">Invalid email</i> </span>
+            </div>
           </div>
           <div class="form-group">
             <input formControlName="firstname" type="text"  class="form-control" placeholder="Firstname">
+            <div class="errors">
+              <span>
+                <i class="fa fa-check-circle" *ngIf="firstname.valid"></i>
+              </span>
+              <span> <i class="fa fa-times-circle" *ngIf="firstname.invalid  && firstname.touched">Invalid firstname</i> </span>
+            </div>
           </div>
           <div class="form-group">
               <input formControlName="surname" type="text"  class="form-control" placeholder="Surname">
+              <div class="errors">
+                <span>
+                  <i class="fa fa-check-circle" *ngIf="surname.valid"></i>
+                </span>
+                <span> <i class="fa fa-times-circle" *ngIf="surname.invalid  && surname.touched">Invalid surname</i> </span>
+              </div>              
           </div>
           <div class="form-group">
             <input formControlName="mobile" type="number" class="form-control" placeholder="Mobile Number">
+
+            <div class="errors">
+              <span>
+                <i class="fa fa-check-circle" *ngIf="mobile.valid"></i>
+              </span>
+              <span> <i class="fa fa-times-circle" *ngIf="mobile.invalid  && mobile.touched">Invalid Mobile No</i> </span>
+            </div> 
           </div>
           <div class="form-group">
             <input formControlName="password" type="password" name=""  class="form-control" placeholder="Password">
+            <div class="errors">
+              <span>
+                <i class="fa fa-check-circle" *ngIf="password.valid"></i>
+              </span>
+              <span> <i class="fa fa-times-circle" *ngIf="password.invalid  && password.touched">Invalid Mobile No</i> </span>
+            </div> 
           </div>
           <div class="form-group">
             <input formControlName="confirmPasssword" type="password" name=""  class="form-control" placeholder="Confirm Password">
+            <div class="errors">
+              <span>
+                <i class="fa fa-check-circle" *ngIf="confirmPasssword.valid"></i>
+              </span>
+              <span> <i class="fa fa-times-circle" *ngIf="confirmPasssword.invalid  && confirmPasssword.touched">Password Mismatch</i> </span>
+            </div>
           </div>
           <div class="form-group">
              <button [disabled]="!signupForm.valid" (click)="onRegister()" class="card-link btn btn-primary">Register</button>
