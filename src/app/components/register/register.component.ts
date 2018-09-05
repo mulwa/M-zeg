@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       surname: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['',Validators.required],
-      confirmPasssword: ['',CustomValidators.matchPassword]
+      confirmPasssword: ['']
     })
 
     this.signupForm.controls.password.valueChanges.subscribe( 
