@@ -2,11 +2,10 @@ import { AbstractControl } from "@angular/forms";
 export class CustomValidators {
 
     static matchPassword(control: AbstractControl){
-        if(control && (control.value !==null || control.value !==undefined)){            
+        if(control && (control.value ===null || control.value !==undefined)){            
             const confirmPass = control.value;
-            const passwordControl = control.root.get('password');
-           
-            const password =  passwordControl.value;
+            const password = control.root.value.password;           
+            
             
             if(confirm !== password){
                 return {
@@ -14,6 +13,10 @@ export class CustomValidators {
                 }
             }
             return null;
+
+            
+           
+            
 
 
         }

@@ -13,7 +13,7 @@ import { CustomValidators } from '../../CustomValidators';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  signupForm:FormGroup;
+  public signupForm:FormGroup;
   url ="https://m-zeg.herokuapp.com/user";
   httpHeaders:HttpHeaders;
 
@@ -30,11 +30,11 @@ export class RegisterComponent implements OnInit {
       surname: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['',Validators.required],
-      confirmPasssword: ['']
+      confirmPassword: ''
     })
 
     this.signupForm.controls.password.valueChanges.subscribe( 
-      x=> this.signupForm.controls.confirmPasssword.updateValueAndValidity()
+      x=> this.signupForm.controls.confirmPassword.updateValueAndValidity()
     )
   }
   get email(){
@@ -52,8 +52,8 @@ export class RegisterComponent implements OnInit {
   get password(){
     return  this.signupForm.get('password') as FormControl;
   }
-  get confirmPasssword(){
-    return this.signupForm.get('confirmPasssword') as FormControl;
+  get confirmPassword(){
+    return this.signupForm.get('confirmPassword') as FormControl;
   }
   onRegister(){ 
     this.spinnerService.show();   
