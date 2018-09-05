@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -32,6 +32,24 @@ export class RegisterComponent implements OnInit {
       confirmPasssword: ['',Validators.required]
 
     })
+  }
+  get email(){
+    return this.signupForm.get('email') as FormControl;
+  }
+  get firstname(){
+    return this.signupForm.get('firstname') as FormControl;
+  }
+  get surname (){
+    return this.signupForm.get('surname') as FormControl;
+  }
+  get mobile(){
+    return  this.signupForm.get('mobile') as  FormControl;
+  }
+  get password(){
+    return  this.signupForm.get('password') as FormControl;
+  }
+  get confirmPasssword(){
+    return this.signupForm.get('confirmPasssword') as FormControl;
   }
   onRegister(){ 
     this.spinnerService.show();   
