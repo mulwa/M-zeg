@@ -1,3 +1,4 @@
+import { CustomValidators } from './../../CustomValidators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
@@ -5,7 +6,7 @@ import { error } from 'util';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
-import { CustomValidators } from '../../CustomValidators';
+
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
       surname: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['',Validators.required],
-      confirmPassword: ''
+      confirmPassword: ['',CustomValidators.matchPassword]
     })
 
     this.signupForm.controls.password.valueChanges.subscribe( 
