@@ -8,9 +8,7 @@ export class CustomValidators {
 
             if(passcontrol){
                const passValue = passcontrol.value;
-               console.log(`the  confirm password value is ${cnfpass}`)
-                console.log(`the  password value is ${passValue}`)
-
+               
                if(passValue !== cnfpass){
                    return {
                        'misMatch': true
