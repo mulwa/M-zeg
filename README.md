@@ -8,12 +8,11 @@
 
 | Method | Endpoint                        | Description       |Parameters|
 | ------ | ------------------------------- | ------------------|----------|
-| POST   | https://m-zeg.herokuapp.com/user| sign up a user    |firstname,surname,mobile,email,password |
-| POST   | https://m-zeg.herokuapp.com/user/login| login a user|email, password|
+| POST   | https://m-zeg.herokuapp.com/user| sign up a user    |firstname  
+                                                                surname  
+                                                                mobile  
+                                                                email                             password |
+| POST   | https://m-zeg.herokuapp.com/user/login| login a user|email 
+                                                                password|
 
 
-firstname
-surname
-mobile
-password
-email
