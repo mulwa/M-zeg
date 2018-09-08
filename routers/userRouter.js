@@ -20,14 +20,14 @@ router.post('/',(req,res,next)=>{
             })
         }else{
         if(data != null){
-            return res.status(409).json({
+            return res.status(500).json({
                 status:false,
                 message: 'Email already  exists',                     
             })
         }else{
             User.findOne({mobile:req.body.mobile}, (error, data)=>{
                 if(data !=null){
-                    return res.status(409).json({
+                    return res.status(500).json({
                         status:false,
                         message:'Mobile Number already Exists'
                     })
