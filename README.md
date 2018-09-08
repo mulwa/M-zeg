@@ -6,7 +6,14 @@
 
 ## Endpoints Available
 
-| Method | Endpoint                        | Description                           |
-| ------ | ------------------------------- | ------------------------------------- |
-| POST   | https://m-zeg.herokuapp.com/user| sign up a user                        |
-| POST   | https://m-zeg.herokuapp.com/user/login| login a user                    |
+| Method | Endpoint                        | Description       |Parameters|
+| ------ | ------------------------------- | ------------------|----------|
+| POST   | https://m-zeg.herokuapp.com/user| sign up a user    |firstname,surname,mobile,email,password |
+| POST   | https://m-zeg.herokuapp.com/user/login| login a user|email, password|
+
+
+firstname
+surname
+mobile
+password
+email
